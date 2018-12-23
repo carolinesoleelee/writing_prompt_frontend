@@ -13,7 +13,8 @@ class App extends Component {
     super()
     this.state = {
       questions: [],
-      selectedQuestion: {}
+      selectedQuestion: {},
+      index: 0
     }
   }
 
@@ -31,13 +32,29 @@ class App extends Component {
       })
   }
 
+  nextBatch = () => {
+    this.setState({
+      index: this.state.index + 5
+    })
+  }
+
+  previousBatch = () => {
+    this.setState({
+      index: this.state.index - 5
+    })
+  }
+
+  showTen = () => {
+    return (this.state.questions.slice(this.state.index, this.state.index + 5))
+  }
+
   render() {
     return (
       <div className="App">
         <Navbar className='NavColor'/>
         <Route exact path='/' component={HomePageContainer}/>
         <Route exact path='/questions' render={() => {
-          return <QuestionsContainer questionsArr={this.state.questions} select={this.selectQuestion}/>
+          return <QuestionsContainer questionsArr={this.showTen()} select={this.selectQuestion} nextBatch={this.nextBatch} previousBatch={this.previousBatch}/>
         }} />
         <Route exact path='/questions/:id' render={(props) => {
           let questionId = parseInt(props.match.params.id)
