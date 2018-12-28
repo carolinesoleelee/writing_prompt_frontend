@@ -3,24 +3,11 @@ import CategoryQuestion from './CategoryQuestion'
 
 export default class Category extends Component{
 
-  constructor(){
-    super()
-    this.state = {
-      selectedQuestion: {},
-    }
-  }
-
-  select = (obj) => {
-    this.setState({
-      selectedQuestion: obj
-    })
-  }
-
   render(){
-    console.log(this.state.selectedQuestion)
+    console.log(this.props)
     return(
       <div>
-      {this.props.category.map(data => <CategoryQuestion obj={data} select={this.select}/>)}
+      {this.props.category.map((data, index)=> <CategoryQuestion key={index} obj={data} select={this.props.select}/>)}
       </div>
     )
   }

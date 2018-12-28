@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
+import Post from './Post'
 
 export default class AnswerQuestion extends Component{
 
@@ -13,14 +14,7 @@ export default class AnswerQuestion extends Component{
       <br />
       <br />
       {this.props.answer ? this.props.answer.question : null}
-      <form>
-        <br />
-          <textarea style={{ height: 400, width: 800}} type="textarea" name="name" />
-        <br /><br />
-          <input type="submit" value="Submit" />
-        </form>
-        <br /><br />
-        <br /><br />
+      <Post />
       </div>
 
     )

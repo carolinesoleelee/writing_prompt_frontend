@@ -25,15 +25,17 @@ class App extends Component {
   }
 
   componentDidMount(){
-    fetch('http://localhost:3001/api/v1/prompts')
-      .then(res => res.json())
-      .then(questionData => this.setState({
-        questions: questionData
+    Promise.all([
+      fetch('http://localhost:3001/api/v1/prompts'),
+      fetch('http://localhost:3001/api/v1/posts')])
+      .then(([res1, res2])=> Promise.all([res1.json(), res2.json()]))
+      .then(([questionData, postData]) => this.setState({
+        questions: questionData,
+        posts: postData
       }))
   }
 
   selectQuestion = (obj) =>{
-    console.log(obj)
     this.setState({
         selectedQuestion: obj
       })
@@ -56,6 +58,7 @@ class App extends Component {
   }
 
   render() {
+      console.log(this.state.posts)
     return (
       <div className="App">
         <Navbar className='NavColor'/>
@@ -78,7 +81,7 @@ class App extends Component {
         }} />
         <Route exact path='/categories/:category' render={(props) => {
           let cate = props.match.params.category
-          return <Category category={this.state.questions ? this.state.questions.filter(cat => cat.category === cate) : null} select={this.selectQuestion}/> }} />
+          return <Category category={this.state.questions ? this.state.questions.filter(cat => cat.category === cate) : null} select={this.selectQuestion} chosen={this.state.selectedQuestion}/> }} />
       </div>
     );
   }
