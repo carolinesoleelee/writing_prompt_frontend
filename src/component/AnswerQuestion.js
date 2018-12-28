@@ -5,7 +5,6 @@ export default class AnswerQuestion extends Component{
 
   render(){
         let number = Math.floor(Math.random() * 70)
-        console.log(number)
     return(
       <div>
       <Link className='item' to={`/questions/${number}`}>

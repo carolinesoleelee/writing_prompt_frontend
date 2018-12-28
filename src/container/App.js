@@ -8,6 +8,7 @@ import UserProfile from '../component/UserProfile'
 import {Route} from 'react-router-dom'
 import LoginForm from '../component/LoginForm'
 import SignLogin from './SignLogin'
+import Category from '../component/Category'
 import CategoriesContainer from './CategoriesContainer'
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
   }
 
   selectQuestion = (obj) =>{
+    console.log(obj)
     this.setState({
         selectedQuestion: obj
       })
@@ -58,18 +60,25 @@ class App extends Component {
       <div className="App">
         <Navbar className='NavColor'/>
         <Route exact path='/' component={HomePageContainer}/>
+        <Route exact path='/user' component={UserProfile} />
+
+
         <Route exact path='/questions' render={() => {
           return <QuestionsContainer questionsArr={this.showTen()} select={this.selectQuestion} nextBatch={this.nextBatch} previousBatch={this.previousBatch}/>
         }} />
-        <Route exact path='/user' component={UserProfile} />
         <Route exact path='/questions/:id' render={(props) => {
           let questionId = parseInt(props.match.params.id)
           return <AnswerQuestion answer={this.state.questions.find(q => q.id === questionId)} /> }} />
+
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/member' component={SignLogin} />
+
+        <Route exact path='/categories' render={() => {
+          return <CategoriesContainer questionsArr={this.state.questions} select={this.selectQuestion}/>
+        }} />
         <Route exact path='/categories/:category' render={(props) => {
           let cate = props.match.params.category
-          return <CategoriesContainer category={this.state.questions ? this.state.questions.filter(cat => cat.category === cate) : null}/> }} />
+          return <Category category={this.state.questions ? this.state.questions.filter(cat => cat.category === cate) : null}/> }}  select={this.selectQuestion}/>
       </div>
     );
   }
