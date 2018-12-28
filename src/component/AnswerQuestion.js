@@ -27,4 +27,3 @@ export default class AnswerQuestion extends Component{
     )
   }
 }
- 
