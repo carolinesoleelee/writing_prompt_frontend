@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CategoryCard from '../component/CategoryCard'
+import {Link} from 'react-router-dom'
 
 export default class CategoriesContainer extends Component{
   getcat = () => {
@@ -21,6 +22,9 @@ export default class CategoriesContainer extends Component{
     return(
       <div>
       {this.getcat().map((data, index) => <CategoryCard key={index} cat={data} handleOnClick={this.props.select} arr={this.props.questionsArr}/>)}
+      <Link className='item' to={`/questions`}>
+      <button>All Questions</button>
+      </Link>
       </div>
     )
   }

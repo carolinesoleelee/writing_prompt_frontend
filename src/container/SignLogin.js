@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-
+import LoginForm from '../component/LoginForm'
 
 export default class SignLoginContainer extends Component{
 
   render(){
     return(
       <div>
-      <Link className='item' to='/login'>
-      <button>Login</button>
-      </Link><br /><br />
-      <Link className='item' to='/login'>
-      <button>Signup</button>
+      <LoginForm />
+      <Link className='item' to='/signup'>
+          Not a member?
       </Link>
       </div>
     )

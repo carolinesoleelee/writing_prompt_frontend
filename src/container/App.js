@@ -78,7 +78,7 @@ class App extends Component {
         }} />
         <Route exact path='/categories/:category' render={(props) => {
           let cate = props.match.params.category
-          return <Category category={this.state.questions ? this.state.questions.filter(cat => cat.category === cate) : null}/> }}  select={this.selectQuestion}/>
+          return <Category category={this.state.questions ? this.state.questions.filter(cat => cat.category === cate) : null} select={this.selectQuestion}/> }} />
       </div>
     );
   }
