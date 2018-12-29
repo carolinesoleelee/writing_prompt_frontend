@@ -5,9 +5,15 @@ export default class IndividualPost extends Component {
   render(){
     console.log(this.props.data)
     return(
-      <div>
-      <button>{this.props.data.prompt_id}:{this.props.data.text}</button>
-      </div>
+      <Link to={`/users/${this.props.data.id}`}>
+        <div onClick={(e)=> this.props.selectedQuestion(this.props.data.id)}>
+          <button>{this.props.data.prompt_id}:{this.props.data.text}</button>
+
+        </div>
+      </Link>
     )
   }
 }
+
+
+        // <div onClick={(e)=> this.props.selectedQuestion(this.props.data)}>

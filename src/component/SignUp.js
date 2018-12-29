@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
-import { Button, Form, Segment, Message } from "semantic-ui-react";
+import { Button, Form, Segment } from "semantic-ui-react";
 
 
 class SignUp extends React.Component {

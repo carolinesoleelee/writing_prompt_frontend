@@ -19,7 +19,6 @@ export default class CategoriesContainer extends Component{
 }
 
   render(){
-    let number = Math.floor(Math.random() * 70)
     return(
       <div>
       {this.getcat().map((data, index) => <CategoryCard key={index} cat={data} handleOnClick={this.props.select} arr={this.props.questionsArr}/>)}

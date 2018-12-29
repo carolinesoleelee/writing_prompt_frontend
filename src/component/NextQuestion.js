@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 export default class NextQuestion extends Component{
 
@@ -11,7 +12,9 @@ export default class NextQuestion extends Component{
 
         <button onClick={(e) => {this.props.nextBatch(e)}}>
             Next 5
-        </button>
+        </button><br />
+
+        <Link className='item' to='/categories'><button>Go To Categories</button></Link>
       </div>
         )
 }

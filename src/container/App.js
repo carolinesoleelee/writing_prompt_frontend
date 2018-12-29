@@ -9,6 +9,7 @@ import {Route, Redirect} from 'react-router-dom'
 import LoginForm from '../component/LoginForm'
 import Category from '../component/Category'
 import CategoriesContainer from './CategoriesContainer'
+import PostContainer from './PostContainer'
 import SignUp from '../component/SignUp'
 
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
   }
 
   selectQuestion = (obj) =>{
+    console.log(obj)
     this.setState({
         selectedQuestion: obj
       })
@@ -75,21 +77,26 @@ class App extends Component {
       <div className="App">
         <Navbar className='NavColor'/>
         <Route exact path='/' component={HomePageContainer}/>
-        <Route exact path='/user' render={() =>  <UserProfile userObj={this.state.users ? this.state.users.filter(data => data.id === this.state.currentUser.id) : null} currentUser={this.state.currentUser}
+        <Route exact path='/user' render={() =>  <UserProfile userObj={this.state.users ? this.state.users.filter(data => data.id === this.state.currentUser.id) : null}
+        selectedQuestion={this.selectQuestion} currentUser={this.state.currentUser}
          />} />
          <Route exact path="/login" render={() => this.state.loading ? null : (this.state.currentUser ?
             <Redirect to="/user" /> :
             <LoginForm setCurrentUser={this.setCurrentUser}/> )}
           />
-
         <Route exact path='/signup' component={SignUp} />
+
+        <Route exact path='/user/:id' render={(props)=> {
+          let questId = parseInt(props.match.params.id)
+          return <PostContainer answer={this.state.questions.find(q => q.id === questId)}/>
+        }} />
 
         <Route exact path='/questions' render={() => {
           return <QuestionsContainer questionsArr={this.showTen()} select={this.selectQuestion} nextBatch={this.nextBatch} previousBatch={this.previousBatch}/>
         }} />
         <Route exact path='/questions/:id' render={(props) => {
           let questionId = parseInt(props.match.params.id)
-          return <AnswerQuestion answer={this.state.questions.find(q => q.id === questionId)} currentUser={this.state.currentUser}/> }} />
+          return <AnswerQuestion answer={this.state.questions.find(q => q.id === questionId)} currentUser={this.state.currentUser} selectedQuestion={this.state.selectedQuestion} /> }} />
         <Route exact path='/categories' render={() => {
           return <CategoriesContainer questionsArr={this.state.questions} select={this.selectQuestion}/>
         }} />
