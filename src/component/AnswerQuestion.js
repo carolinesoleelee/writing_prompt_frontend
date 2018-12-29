@@ -14,7 +14,7 @@ export default class AnswerQuestion extends Component{
       <br />
       <br />
       {this.props.answer ? this.props.answer.question : null}
-      <Post />
+      <Post currentUser={this.props.currentUser}/>
       </div>
 
     )

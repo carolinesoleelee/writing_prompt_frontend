@@ -1,15 +1,29 @@
-import React from "react";
+import React, { Component } from 'react';
 import { Card, Image } from "semantic-ui-react";
 import {Redirect} from 'react-router-dom'
+import IndividualPost from './IndividualPost'
+import {Link} from 'react-router-dom'
 
-const Profile = ({currentUser}) => currentUser? (
-  <Card>
-    <Card.Content>
-      <Card.Header>{currentUser.username}: {currentUser.user_type}</Card.Header>
+export default class UserProfile extends Component{
 
-      <Card.Description>{currentUser.bio}</Card.Description>
-    </Card.Content>
-  </Card>
-) : <Redirect to="/login" />
 
-export default Profile;
+  render(){
+    let currentUser = this.props.currentUser
+    return(
+      <div>
+      {currentUser ? (
+
+        <div>
+            <h1>{currentUser.username}{currentUser.user_type}</h1>
+            <Link className='item' to='/'>Time to write</Link>
+            <h1>Welcome Back {currentUser.name}!</h1>
+            <h3>Here are your posts</h3>
+          {this.props.userObj[0].posts.map((data, index)=> <IndividualPost key={index} data={data}/>)}
+        </div>
+      ) : <Redirect to="/login" />}
+      </div>
+    )
+  }
+}
+
+//add an avatar

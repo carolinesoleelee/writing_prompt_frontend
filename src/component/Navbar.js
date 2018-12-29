@@ -9,8 +9,7 @@ export default class Navbar extends Component {
           <h2 className="ui header">
           </h2>
         </a>
-        <Link className='item' to='/user'>My Profile</Link>
-        <Link className='item' to='/'>Homepage</Link>
+        <Link className='item' to='/login'>Profile</Link>
         <Link className='item' to='/categories'>Categories</Link>
         <Link className='item' to='/questions'>All Questions</Link>
       </div>

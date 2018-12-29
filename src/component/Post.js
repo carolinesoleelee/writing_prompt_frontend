@@ -20,17 +20,18 @@ export default class Post extends Component{
         "Accept":"application/json"
       },
       body: JSON.stringify({
-          user_id: 1,
+          user_id: this.props.currentUser.id,
           prompt_id: 1,
           text: this.state.text
         })
       })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => data)
   }
 
 
 render(){
+  console.log(this.props)
     return(
       <div>
 
@@ -38,7 +39,7 @@ render(){
         <br />
           <textarea placeholder='insert text here' onChange={this.handleChange} style={{ height: 400, width: 800}} type="textarea" name="name" />
         <br /><br />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit"/>
       </form>
 
 
