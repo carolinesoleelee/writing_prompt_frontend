@@ -1,30 +1,15 @@
-import React, { Component } from 'react'
+import React from "react";
+import { Card, Image } from "semantic-ui-react";
+import {Redirect} from 'react-router-dom'
 
-export default class UserProfile extends Component{
+const Profile = ({currentUser}) => currentUser? (
+  <Card>
+    <Card.Content>
+      <Card.Header>{currentUser.username}: {currentUser.user_type}</Card.Header>
 
-  constructor(){
-    super()
-    this.state = {
-      questions: [],
-      users: []
-    }
-  }
+      <Card.Description>{currentUser.bio}</Card.Description>
+    </Card.Content>
+  </Card>
+) : <Redirect to="/login" />
 
-  componentDidMount(){
-    fetch('http://localhost:3001/api/v1/users')
-      .then(res => res.json())
-      .then(userData => this.setState({
-        users: userData
-      }))
-  }
-
-
-  render(){
-    console.log(this.state.users[0])
-    return(
-      <div>
-      {this.state.users[0] ? <h1>{this.state.users[0].username}</h1> : null}
-      </div>
-    )
-  }
-}
+export default Profile;

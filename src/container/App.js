@@ -5,11 +5,11 @@ import QuestionsContainer from './QuestionsContainer'
 import HomePageContainer from './HomepageContainer'
 import AnswerQuestion from '../component/AnswerQuestion'
 import UserProfile from '../component/UserProfile'
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import LoginForm from '../component/LoginForm'
-import SignLogin from './SignLogin'
 import Category from '../component/Category'
 import CategoriesContainer from './CategoriesContainer'
+import SignUp from '../component/SignUp'
 
 class App extends Component {
 
@@ -20,7 +20,8 @@ class App extends Component {
       selectedQuestion: {},
       index: 0,
       posts: [],
-      selectedUser: {}
+      selectedUser: {},
+      currentUser: null
     }
   }
 
@@ -57,14 +58,27 @@ class App extends Component {
     return (this.state.questions.slice(this.state.index, this.state.index + 5))
   }
 
+  setCurrentUser = (userObj) => {
+    this.setState({
+      currentUser: userObj
+    })
+  }
+
+
+
   render() {
-      console.log(this.state.posts)
     return (
       <div className="App">
         <Navbar className='NavColor'/>
         <Route exact path='/' component={HomePageContainer}/>
-        <Route exact path='/user' component={UserProfile} />
+        <Route exact path='/user' render={() =>  <UserProfile currentUser={this.state.currentUser}/>} />
+        <Route exact path="/login" render={() => this.state.loading ? null : (this.state.currentUser ?
+            <Redirect to="/user" /> :
+            <LoginForm setCurrentUser={this.setCurrentUser}/> )}
+          />
 
+
+        <Route exact path='/signup' component={SignUp} />
 
         <Route exact path='/questions' render={() => {
           return <QuestionsContainer questionsArr={this.showTen()} select={this.selectQuestion} nextBatch={this.nextBatch} previousBatch={this.previousBatch}/>
@@ -72,10 +86,6 @@ class App extends Component {
         <Route exact path='/questions/:id' render={(props) => {
           let questionId = parseInt(props.match.params.id)
           return <AnswerQuestion answer={this.state.questions.find(q => q.id === questionId)} /> }} />
-
-        <Route exact path='/login' component={LoginForm} />
-        <Route exact path='/member' component={SignLogin} />
-
         <Route exact path='/categories' render={() => {
           return <CategoriesContainer questionsArr={this.state.questions} select={this.selectQuestion}/>
         }} />

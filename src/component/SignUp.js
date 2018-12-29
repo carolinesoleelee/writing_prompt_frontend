@@ -1,11 +1,11 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { Button, Form, Segment, Message } from "semantic-ui-react";
-import {Link} from 'react-router-dom'
 
 
-class LoginForm extends React.Component {
+class SignUp extends React.Component {
   state = {
+    name: "",
     username: "",
     password: ""
   };
@@ -14,31 +14,28 @@ class LoginForm extends React.Component {
     this.setState({ [name]: value });
   };
 
-  handleLoginSubmit = () => {
-    fetch(`http://localhost:3001/api/v1/login`, {
+  handleLoginSubmit = (e) => {
+    e.preventDefault()
+    fetch(`http://localhost:3001/api/v1/users`, {
       method:"POST",
       headers: {
         "Content-type":"application/json",
         "Accept":"application/json"
       },
       body: JSON.stringify({
+        id: 16,
+        name: this.state.name,
         username: this.state.username,
         password: this.state.password
       })
     }).then(res => res.json())
-    .then(data => {
-      if(data.error){
-        alert('Incorrect password and/or username')
-      }else{
-        console.log(data.user_info)
-        this.props.setCurrentUser(data.user_info)
-      }
-    })
+    .then(data => console.log(data))
   }
 
 
   render() {
     return (
+      <div>
       <Segment>
         <Form
           onSubmit={this.handleLoginSubmit}
@@ -47,11 +44,14 @@ class LoginForm extends React.Component {
           loading={this.props.authenticatingUser}
           error={this.props.failedLogin}
         >
-          <Message
-            error
-            header={this.props.failedLogin ? this.props.error : null}
-          />
           <Form.Group widths="equal">
+            <Form.Input
+              label="name"
+              placeholder="name"
+              name="name"
+              onChange={this.handleChange}
+              value={this.state.name}
+            />
             <Form.Input
               label="username"
               placeholder="username"
@@ -68,14 +68,12 @@ class LoginForm extends React.Component {
               value={this.state.password}
             />
           </Form.Group>
-          <Button type="submit">Login</Button>
+          <Button type="submit">Sign Up</Button>
         </Form>
-        <Link className='item' to='/signup'>
-            Not a member?
-        </Link>
       </Segment>
-    );
+      </div>
+    )
   }
 }
 
-export default withRouter(LoginForm);
+export default withRouter(SignUp);

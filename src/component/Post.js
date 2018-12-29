@@ -2,6 +2,14 @@ import React, { Component } from 'react'
 
 export default class Post extends Component{
 
+  state = {
+    text: ''
+  }
+
+  handleChange = (e) =>{
+      let input = (e.target.value)
+      this.setState({ text: input})
+  }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -12,9 +20,9 @@ export default class Post extends Component{
         "Accept":"application/json"
       },
       body: JSON.stringify({
-          user_id: 4,
+          user_id: 1,
           prompt_id: 1,
-          text: 'hello'
+          text: this.state.text
         })
       })
       .then(res => res.json())
@@ -28,7 +36,7 @@ render(){
 
       <form onSubmit={this.handleSubmit}>
         <br />
-          <textarea style={{ height: 400, width: 800}} type="textarea" name="name" />
+          <textarea placeholder='insert text here' onChange={this.handleChange} style={{ height: 400, width: 800}} type="textarea" name="name" />
         <br /><br />
           <input type="submit" value="Submit" />
       </form>
