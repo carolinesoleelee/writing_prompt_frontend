@@ -30,8 +30,9 @@ class LoginForm extends React.Component {
       if(data.error){
         alert('Incorrect password and/or username')
       }else{
-        console.log(data.user_info)
+        console.log(data)
         this.props.setCurrentUser(data.user_info)
+        localStorage.setItem('token', data.token)
       }
     })
   }

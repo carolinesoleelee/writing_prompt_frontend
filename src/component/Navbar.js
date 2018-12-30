@@ -1,18 +1,39 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
 
-export default class Navbar extends Component {
-  render(){
-    return(
-      <div className={`ui inverted blue menu`}>
-        <a className="item" href="/">
-          <h2 className="ui header">
-          </h2>
-        </a>
-        <Link className='item' to='/login'>Profile</Link>
-        <Link className='item' to='/categories'>Categories</Link>
-        <Link className='item' to='/questions'>All Questions</Link>
-      </div>
-    )
+import React, { Fragment } from "react";
+import { NavLink, withRouter, Link } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
+
+const Nav = ({ location: { pathname }, logged_in, setCurrentUser }) => {
+  let logout = () => {
+    setCurrentUser(null)
+    localStorage.clear()
   }
-}
+  return (
+    <Menu pointing secondary>
+      {logged_in ? (
+        <Fragment>
+          <Menu.Item
+            as={NavLink}
+            to="/user"
+            name="Profile"
+            active={pathname === "/user"}
+          />
+          <Link className='item' to='/categories'>Categories</Link>
+          <Link className='item' to='/questions'>All Questions</Link>
+          <Menu.Menu position="right">
+            <Menu.Item to="/logout" name="Logout" onClick={logout}/>
+          </Menu.Menu>
+        </Fragment>
+      ) : (
+        <Menu.Item
+          as={NavLink}
+          to="/login"
+          name="Login"
+          active={pathname === "/login"}
+        />
+      )}
+    </Menu>
+  );
+};
+
+export default withRouter(Nav);

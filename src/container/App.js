@@ -24,11 +24,14 @@ class App extends Component {
       posts: [],
       selectedUser: {},
       currentUser: null,
-      users: []
+      users: [],
+      loading: true
     }
   }
 
+
   componentDidMount(){
+    this.login()
     Promise.all([
       fetch('http://localhost:3001/api/v1/prompts'),
       fetch('http://localhost:3001/api/v1/posts'),
@@ -38,8 +41,31 @@ class App extends Component {
         questions: questionData,
         posts: postData,
         users: userData
-      }))
+      }));
   }
+
+
+login = () => {
+  let token = localStorage.getItem('token')
+  if(token){
+  fetch(`http://localhost:3001/api/v1/profile`, {
+    method: "GET",
+    headers: {
+      "Authentication" : `Bearer ${token}`
+    }
+  }).then(res => res.json()) //GET fetch
+  .then(data => {
+    this.setState({
+      currentUser: data.user,
+      loading: false
+    })
+  })
+}else{
+  this.setState({
+    loading: false
+  })
+}
+}
 
   selectQuestion = (obj) =>{
     this.setState({
@@ -75,7 +101,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar className='NavColor'/>
+        <Navbar className='NavColor' logged_in={this.state.currentUser} setCurrentUser={this.setCurrentUser}/>
         <Route exact path='/' component={HomePageContainer}/>
         <Route exact path='/user' render={() =>  <UserProfile userObj={this.state.users ? this.state.users.filter(data => data.id === this.state.currentUser.id) : null}
         selectedQuestion={this.selectQuestion} currentUser={this.state.currentUser}
