@@ -11,6 +11,7 @@ import Category from '../component/Category'
 import CategoriesContainer from './CategoriesContainer'
 import PostContainer from './PostContainer'
 import SignUp from '../component/SignUp'
+import Patch from '../component/Patch'
 
 class App extends Component {
 
@@ -41,7 +42,6 @@ class App extends Component {
   }
 
   selectQuestion = (obj) =>{
-    console.log(obj)
     this.setState({
         selectedQuestion: obj
       })
@@ -85,10 +85,14 @@ class App extends Component {
             <LoginForm setCurrentUser={this.setCurrentUser}/> )}
           />
         <Route exact path='/signup' component={SignUp} />
+        <Route exact path='/update/:id' render={(props) => {
+          let questionId = parseInt(props.match.params.id)
+          return <Patch answer={this.state.questions.find(q => q.id === questionId)}
+          currentUser={this.state.currentUser} selectedQuestion={this.state.selectedQuestion} /> }} />
 
         <Route exact path='/user/:id' render={(props)=> {
           let questId = parseInt(props.match.params.id)
-          return <PostContainer answer={this.state.questions.find(q => q.id === questId)}/>
+          return <PostContainer answer={this.state.questions.find(q => q.id === questId)} currentUser={this.state.currentUser}/>
         }} />
 
         <Route exact path='/questions' render={() => {
