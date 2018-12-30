@@ -22,8 +22,8 @@ export default class Patch extends Component{
       "Accept":"application/json"
     },
     body: JSON.stringify({
-        user_id: 1,
-        prompt_id: 8,
+        user_id: this.props.currentUser.id,
+        prompt_id: this.props.answer.id,
         text: this.state.text
       })
     })
@@ -40,7 +40,6 @@ export default class Patch extends Component{
 
 
 render(){
-  console.log(this.props.answer)
     return(
       <div>
       {this.props.answer ? this.props.answer.question : null}
