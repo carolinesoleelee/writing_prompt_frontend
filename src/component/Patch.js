@@ -15,7 +15,7 @@ export default class Patch extends Component{
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch('http://localhost:3001/api/v1/posts/1', {
+    fetch(`http://localhost:3001/api/v1/posts/${this.props.answer ? this.props.answer.posts.filter(user => user.user_id == this.props.currentUser.id)[0].id : null}`, {
       method: 'PATCH',
       headers: {
       "Content-type":"application/json",
@@ -40,6 +40,7 @@ export default class Patch extends Component{
 
 
 render(){
+  console.log(this.props.answer ? this.props.answer.posts.filter(user => user.user_id == this.props.currentUser.id)[0].id : null)
     return(
       <div>
       {this.props.answer ? this.props.answer.question : null}
