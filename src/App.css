@@ -1,26 +1,78 @@
-/* body{
-  background-color: rgba(14, 91, 163, 0.97)
-} */
+body{
+  background-color: white;
+  font-family: mr-eaves-modern, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  line-height: 22.5px;
+}
+
+p, h1, h2, h3{
+  color: #143957
+}
+
+h1{
+  font-family: goldenbook, serif;
+
+    font-weight: 400;
+    font-style: normal;
+    font-size: 50px;
+      line-height: 53px;
+    text-align: left;
+}
+
+p{
+      text-align: left;
+      line-height: 23px;
+}
+
+
 
 .App {
   text-align: center;
 }
 
+.buts{
+  position: absolute;
+      left: auto;
+      margin: top;
+      margin-top: .5rem;
+      margin-left: -0.5rem;
+}
+
 .menu{
     text-align: left;
-    background-color: white
+    background-color: #D9b777
+}
+
+.hand{
+  position: relative;
+  left: 0
+}
+.Homepage {
+  display: grid;
+  grid-template-columns: 53% 38% 10%;
 }
 
 .item{
     background-color: white
 }
 
-.ui.inverted.blue.menu {
-  background-color: grey;
+.ui.inverted.blue.menu, .ui.secondary.pointing.menu {
+  background-color: #D9b777;
 }
 
 .font{
   font-family: serif;
+}
+
+button{
+  background-color: #D9b777;
+  border-radius: 6px;
+  padding: 3px 12px;
+  color: white;
+  margin: 7px;
+  text-align: center;
 }
 
 @media all and (min-width: 480px) {
