@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 export default class HomePageContainer extends Component{
 
   render(){
-    let number = Math.floor(Math.random() * 70)
+    let number = Math.floor(Math.random() * 313)
     return(
       <div>
       <h1>Would you like to...</h1>

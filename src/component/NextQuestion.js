@@ -7,11 +7,11 @@ export default class NextQuestion extends Component{
     return(
       <div>
       <button onClick={(e) => {this.props.previousBatch(e)}}>
-          Prev 5
+          Prev 10
       </button>
 
         <button onClick={(e) => {this.props.nextBatch(e)}}>
-            Next 5
+            Next 10
         </button><br />
 
         <Link className='item' to='/categories'><button>Go To Categories</button></Link>

@@ -75,18 +75,18 @@ login = () => {
 
   nextBatch = () => {
     this.setState({
-      index: this.state.index + 5
+      index: this.state.index + 10
     })
   }
 
   previousBatch = () => {
     this.setState({
-      index: this.state.index - 5
+      index: this.state.index - 10
     })
   }
 
   showTen = () => {
-    return (this.state.questions.slice(this.state.index, this.state.index + 5))
+    return (this.state.questions.slice(this.state.index, this.state.index + 10))
   }
 
   setCurrentUser = (userObj) => {
