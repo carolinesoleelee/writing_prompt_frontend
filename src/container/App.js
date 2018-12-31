@@ -31,6 +31,7 @@ class App extends Component {
 
 
   componentDidMount(){
+    console.log('app mounted')
     this.login()
     Promise.all([
       fetch('http://localhost:3001/api/v1/prompts'),
@@ -103,9 +104,16 @@ login = () => {
       <div className="App">
         <Navbar className='NavColor' logged_in={this.state.currentUser} setCurrentUser={this.setCurrentUser}/>
         <Route exact path='/' component={HomePageContainer}/>
-        <Route exact path='/user' render={() =>  <UserProfile userObj={this.state.users ? this.state.users.filter(data => data.id === this.state.currentUser.id) : null}
-        selectedQuestion={this.selectQuestion} currentUser={this.state.currentUser}
-         />} />
+
+
+
+<Route exact path='/user' render={() => this.state.users.length > 0 ? (
+  <UserProfile userObj={this.state.users.filter(data => data.id === this.state.currentUser.id)}
+selectedQuestion={this.selectQuestion} currentUser={this.state.currentUser}/>) : null } />
+
+
+
+
          <Route exact path="/login" render={() => this.state.loading ? null : (this.state.currentUser ?
             <Redirect to="/user" /> :
             <LoginForm setCurrentUser={this.setCurrentUser}/> )}

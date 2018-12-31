@@ -20,7 +20,9 @@ export default class AnswerQuestion extends Component{
   //YOU ALSO HAVE TO HARD REFRESH EVERYTHING TO MAKE
   //POSTS APPEAR
   //UPDATE WITH THE ORIGINAL WORDS ASK MARRISA
-  //MAYBE YOU CAN PASS DATA FROM THE URL 
+  //MAYBE YOU CAN PASS DATA FROM THE URL
+  //ASK IMAN ABOUT TIME READ ON POST
+  //
 
   handleChange = (e) =>{
       let input = (e.target.value)

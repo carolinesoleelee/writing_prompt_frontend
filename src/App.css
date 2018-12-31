@@ -1,10 +1,18 @@
+/* body{
+  background-color: rgba(14, 91, 163, 0.97)
+} */
+
 .App {
   text-align: center;
 }
 
 .menu{
     text-align: left;
-    background-color:
+    background-color: white
+}
+
+.item{
+    background-color: white
 }
 
 .ui.inverted.blue.menu {

@@ -12,6 +12,7 @@ export default class UserProfile extends Component{
     let currentUser = this.props.currentUser
     const defaults = {icon: 'SNOW', color: 'black', size: 50,animate: true
 };
+console.log(this.props)
     return(
       <div>
       {currentUser ? (
