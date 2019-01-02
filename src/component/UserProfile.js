@@ -10,7 +10,7 @@ export default class UserProfile extends Component{
 
   render(){
     let currentUser = this.props.currentUser
-    const defaults = {icon: 'PARTLY_CLOUDY_NIGHT', color: '#D9b777', size: 70,animate: true
+    const defaults = {icon: 'CLOUDY', color: '#D9b777', size: 70,animate: true
 };
 console.log(this.props.userObj[0].posts.length)
     return(
@@ -32,8 +32,7 @@ console.log(this.props.userObj[0].posts.length)
                 <Link className='ptag3' to='/'>TIME</Link><br />
                 <div className='color'>
                 <Clock format={'HH:mm'} ticking={true} timezone={'America/New_York'} />
-                  <br /><br />
-                  <p className='ptag3'>PARTLY CLOUDY / 54° F</p>
+                  <p className='ptag3'>CLOUDY / 54° F</p>
                   <ReactAnimatedWeather
                   icon={defaults.icon}
                   color={defaults.color}

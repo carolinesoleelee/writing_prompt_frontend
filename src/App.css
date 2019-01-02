@@ -120,6 +120,15 @@ p{
   margin-left: 257px;
 }
 
+.cattext6{
+  margin-top: 56px;
+  font-size: 20px;
+  line-height: 1.25;
+  font-family: goldenbook, serif;
+  margin-right: 253px;
+  margin-left: 257px;
+}
+
 .prev {
   position: absolute;
 left: 15%;
@@ -242,6 +251,18 @@ color: #D9b777;
       font-size: 15px;
       text-transform: uppercase;
       margin-bottom: 30px;
+}
+
+.text{
+  text-align: center;
+      font-size: 15px;
+      margin-bottom: 30px;
+      margin-left: 230px;
+margin-right: 230px;
+}
+
+.delete{
+  margin-left: 85.75px;
 }
 
 .item{

@@ -3,11 +3,16 @@ import React, { Fragment } from "react";
 import { NavLink, withRouter, Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
-const Nav = ({ location: { pathname }, logged_in, setCurrentUser }) => {
+const Nav = (props) => {
+  let { location: { pathname }, logged_in, setCurrentUser } = props;
+  console.log(props);
   let logout = () => {
     setCurrentUser(null)
     localStorage.clear()
+    props.history.push('/')
   }
+
+
   return (
     <Menu pointing secondary>
       {logged_in ? (

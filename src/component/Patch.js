@@ -43,7 +43,7 @@ render(){
   console.log(this.props.answer ? this.props.answer.posts.filter(user => user.user_id == this.props.currentUser.id)[0].id : null)
     return(
       <div>
-      {this.props.answer ? this.props.answer.question : null}
+      <div className='cattext6'>{this.props.answer ? this.props.answer.question : null}</div>
       {this.renderRedirect()}
       <form onSubmit={this.handleSubmit}>
         <br />

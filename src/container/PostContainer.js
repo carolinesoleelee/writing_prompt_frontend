@@ -30,14 +30,14 @@ export default class PostContainer extends Component{
     console.log(this.props.answer ? this.props.answer.posts.filter(user => user.user_id == this.props.currentUser.id)[0].id : null)
     return(
       <div>
-      {this.props.answer ? this.props.answer.question : null}<br /><br />
-      {this.props.answer ? this.props.answer.posts.filter(user => user.user_id == this.props.currentUser.id)[0].text : null}<br />
+      <div className='cattext6'>{this.props.answer ? this.props.answer.question : null}</div><br /><br />
+      <div className='text'>{this.props.answer ? this.props.answer.posts.filter(user => user.user_id == this.props.currentUser.id)[0].text : null}</div><br />
       <Link to={`/update/${this.props.answer.id}`}>
           <button>update</button>
       </Link><br />
 
       {this.renderRedirect()}
-      <button onClick={this.handleSubmit}>Delete This Post</button>
+      <button className='delete' onClick={this.handleSubmit}>Delete This Post</button>
             <Link className='item' to='/login'>Back to Profile</Link><br />
       </div>
     )
