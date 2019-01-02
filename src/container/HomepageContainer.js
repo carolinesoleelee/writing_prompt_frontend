@@ -21,7 +21,7 @@ export default class HomePageContainer extends Component{
       <button>Choose a Question</button>
       </Link>
       <Link className='item' to={`/questions/${number}`}>
-      <button>Allow Randomize</button>
+      <button>Be Spontaneous</button>
       </Link>
 </div>
       </div>

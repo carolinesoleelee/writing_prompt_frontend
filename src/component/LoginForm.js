@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
-import { Button, Form, Segment, Message } from "semantic-ui-react";
+import { Button, Form, Message } from "semantic-ui-react";
 import {Link} from 'react-router-dom'
 
 
@@ -40,7 +40,8 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <Segment>
+      <div className='Login'>
+      <div className='black'>
         <Form
           onSubmit={this.handleLoginSubmit}
           size="mini"
@@ -48,33 +49,45 @@ class LoginForm extends React.Component {
           loading={this.props.authenticatingUser}
           error={this.props.failedLogin}
         >
+
           <Message
             error
             header={this.props.failedLogin ? this.props.error : null}
           />
+          <p className='ptag5'>LOG IN TO YOUR ACCOUNT</p>
+
+          <p className='ptag4'>USERNAME</p>
+          <p className='ptag6'>PASSWORD</p>
           <Form.Group widths="equal">
             <Form.Input
-              label="username"
-              placeholder="username"
+              label="Username"
+              placeholder="Username"
               name="username"
+              className='inputs'
               onChange={this.handleChange}
               value={this.state.username}
             />
             <Form.Input
               type="password"
-              label="password"
-              placeholder="password"
+              label="Password"
+              placeholder="Password"
+              className='inputs'
               name="password"
               onChange={this.handleChange}
               value={this.state.password}
             />
           </Form.Group>
-          <Button type="submit">Login</Button>
+          <button className='log'type="submit">Login</button>
         </Form>
         <Link className='item' to='/signup'>
-            Not a member?
+            NOT A MEMBER?
         </Link>
-      </Segment>
+      </div>
+        <div className='People'>
+        <img src='https://i.imgur.com/0Zuz5bW.jpg'className='peoplePic'></img>
+        </div>
+
+      </div>
     );
   }
 }

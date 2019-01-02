@@ -10,32 +10,47 @@ export default class UserProfile extends Component{
 
   render(){
     let currentUser = this.props.currentUser
-    const defaults = {icon: 'SNOW', color: 'black', size: 50,animate: true
+    const defaults = {icon: 'PARTLY_CLOUDY_NIGHT', color: '#D9b777', size: 70,animate: true
 };
-console.log(this.props)
+console.log(this.props.userObj[0].posts.length)
     return(
-      <div>
+      <div className='Profile'>
       {currentUser ? (
 
-        <div>
-        <p>Weather & Time</p><ReactAnimatedWeather
-            icon={defaults.icon}
-            color={defaults.color}
-            size={defaults.size}
-            animate={defaults.animate}
-          />
-            <Clock format={'HH:mm'} ticking={true} timezone={'America/New_York'} />
-            <h1>{currentUser.username}{currentUser.user_type}</h1>
-            <Link className='item' to='/'>Time to write</Link>
-            <h1>Welcome Back {currentUser.name}!</h1>
-            <h3>Here are your posts</h3>
-          {this.props.userObj[0].posts.map((data, index)=> <IndividualPost key={index} data={data}  selectedQuestion={this.props.selectedQuestion}/>)}
-        </div>
+                <div>
+                  <div className='WelcomeBack'>
+                    <h1 className='head'>Welcome Back!</h1>
+                    <p className='ptag7'><strong>{currentUser.name}</strong></p>
+                    <Link to='/'><button>Start Writing</button></Link><br />
+                    <h3>PREVIOUS POSTS</h3>
+                    <div className='line3'></div>
+                    {this.props.userObj[0].posts.map((data, index)=> <IndividualPost key={index} data={data}  selectedQuestion={this.props.selectedQuestion}/>)}
+                  </div>
+                </div>
       ) : <Redirect to="/login" />}
+                <div className='div2'>
+                <Link className='ptag3' to='/'>TIME</Link><br />
+                <div className='color'>
+                <Clock format={'HH:mm'} ticking={true} timezone={'America/New_York'} />
+                  <br /><br />
+                  <p className='ptag3'>PARTLY CLOUDY / 54° F</p>
+                  <ReactAnimatedWeather
+                  icon={defaults.icon}
+                  color={defaults.color}
+                  size={defaults.size}
+                  animate={defaults.animate}
+                  /><br /><br />
+                  <p className='ptag3'>TOTAL WRITTEN PROMPTS</p>
+                  <div>{this.props.userObj[0].posts.length}</div>
+                  <div className='vl'></div>
+                  </div>
+                </div>
       </div>
     )
   }
 }
+
+// <Link className='ptag3' to='/'>TIME TO WRITE</Link><br />
 
 //add an avatar
 // CLEAR_DAY

@@ -39,7 +39,7 @@ export default class AnswerQuestion extends Component{
       },
       body: JSON.stringify({
           user_id: this.props.currentUser.id,
-          prompt_id: this.props.selectedQuestion.id || this.state.num,
+          prompt_id: this.props.answer.id,
           text: this.state.text
         })
       })
@@ -55,21 +55,19 @@ export default class AnswerQuestion extends Component{
   }
 
   render(){
-    console.log(this.state.num)
     return(
-      <div>
-      <Link className='item' to={`/questions/${this.state.num}`}>
-      <button onClick={this.random}>Randomize Again</button>
-      </Link>
+      <div className='post'>
+
+
       <br />
       <br />
-      {this.props.answer ? this.props.answer.question : null}
+      {this.props.answer ? <div className='cattext5'>{this.props.answer.question} </div > : null}
       {this.renderRedirect()}
       <form onSubmit={this.handleSubmit}>
         <br />
-          <textarea placeholder='insert text here' onChange={this.handleChange} style={{ height: 400, width: 800}} type="textarea" name="name" />
+          <textarea className='box'placeholder='Your insight shall go here' onChange={this.handleChange} style={{ height: 350, width: 650}} type="textarea" name="name" />
         <br /><br />
-          <input type="submit" value="Submit"/>
+          <input className='submit' type="submit" value="Submit"/>
       </form>
         <br /><br />
         <br /><br />

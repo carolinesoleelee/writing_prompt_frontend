@@ -20,13 +20,17 @@ export default class CategoriesContainer extends Component{
 
   render(){
     return(
-      <div>
-      {this.getcat().map((data, index) => <CategoryCard key={index} cat={data} handleOnClick={this.props.select} arr={this.props.questionsArr}/>)}
+      <div className='category'>
+
+      <div className='catTitle'><strong><p className='ptag'>WRITING PROMPT CATEGORIES</p></strong></div>
+      <div className='line'></div>
+      <div className='cat'>{this.getcat().map((data, index) => <CategoryCard key={index} cat={data} handleOnClick={this.props.select} arr={this.props.questionsArr}/>)}</div>
+<div className='buts2'>
       <Link className='item' to={`/questions`}>
-      <button>All Questions</button>
-      </Link><br />
-      <Link className='item' to='/'><button>Go Back</button></Link>
+      <button>View All Questions</button><br /><br />
+      </Link>
       </div>
+    </div>
     )
   }
 }

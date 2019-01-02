@@ -5,16 +5,13 @@ export default class NextQuestion extends Component{
 
   render(){
     return(
-      <div>
-      <button onClick={(e) => {this.props.previousBatch(e)}}>
-          Prev 10
-      </button>
-
-        <button onClick={(e) => {this.props.nextBatch(e)}}>
-            Next 10
-        </button><br />
-
-        <Link className='item' to='/categories'><button>Go To Categories</button></Link>
+      <div className='nextDiv'>
+      <p className='prev' onClick={(e) => {this.props.previousBatch(e)}}>
+          Previous
+      </p>
+        <p className='next' onClick={(e) => {this.props.nextBatch(e)}}>
+            Next
+        </p ><br />
       </div>
         )
 }

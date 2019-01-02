@@ -7,7 +7,7 @@ export default class IndividualPost extends Component {
     return(
       <Link to={`/user/${this.props.data.prompt_id}`}>
         <div onClick={(e)=> this.props.selectedQuestion(this.props.data.id)}>
-          <button>{this.props.data.prompt_id}:{this.props.data.text}</button>
+          <button className='grey'>{this.props.data.prompt_id}:{this.props.data.text}</button>
 
         </div>
       </Link>

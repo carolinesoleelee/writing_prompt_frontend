@@ -8,8 +8,8 @@ export default class QuestionCard extends Component{
     console.log(this.props.questionObj)
     return(
       <Link to={`/questions/${this.props.questionObj.id}`}>
-        <div onClick={(e)=> this.props.handleOnClick(this.props.questionObj)}>
-          <button>{this.props.questionObj.question}</button>
+        <div className='cattext3' onClick={(e)=> this.props.handleOnClick(this.props.questionObj)}>
+          <>{this.props.questionObj.question}</>
 
         </div>
       </Link>
