@@ -103,7 +103,7 @@ login = () => {
     return (
       <div className="App">
         <Navbar className='NavColor' logged_in={this.state.currentUser} setCurrentUser={this.setCurrentUser}/>
-        <Route exact path='/' component={HomePageContainer}/>
+        <Route exact path='/' render={(props)=> <HomePageContainer currentUser={this.state.currentUser}/>}/>
 
 
 
@@ -132,6 +132,7 @@ selectedQuestion={this.selectQuestion} currentUser={this.state.currentUser}/>) :
         <Route exact path='/questions' render={() => {
           return <QuestionsContainer questionsArr={this.showTen()} select={this.selectQuestion} nextBatch={this.nextBatch} previousBatch={this.previousBatch}/>
         }} />
+
         <Route exact path='/questions/:id' render={(props) => {
           let questionId = parseInt(props.match.params.id)
           return <AnswerQuestion answer={this.state.questions.find(q => q.id === questionId)} currentUser={this.state.currentUser} selectedQuestion={this.state.selectedQuestion} /> }} />
